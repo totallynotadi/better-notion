@@ -1,0 +1,24 @@
+{
+  "name": "notion",
+  "version": "1.0.0",
+  "description": "notion titlebar fix",
+  "main": "main.js",
+  "scripts": {
+    "start": "set NODE_ENV=development && electron .",
+    "test": "electron ."
+  },
+  "keywords": [
+    "electron",
+    "notion"
+  ],
+  "author": "totallynotadi <g.aditya2048@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.2.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "custom-electron-titlebar": "^4.2.3"
+  }
+}
