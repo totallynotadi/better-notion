@@ -121,6 +121,9 @@ app.whenReady().then(() => {
         .notion-peek-renderer > div[style="flex-direction: column; position: absolute; display: flex; margin-left: auto; background: rgb(32, 32, 32); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px; top: 0px; right: 0px; width: 100%; height: 100%; border-radius: 0px;"] {
             padding-top: 44px !important;
         }
+        .notion-peek-renderer div[style="height: 44px; display: flex; justify-content: space-between; align-items: center; padding-left: 12px; padding-right: 12px;"] {
+                
+        }
         .notion-peek-renderer > div > div:nth-child(2) > div:nth-child(1) {
             padding-left: 50px !important;
             padding-right: 9px important;

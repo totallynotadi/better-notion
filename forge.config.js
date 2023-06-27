@@ -25,8 +25,10 @@ module.exports = {
                 authors: "Aditya Gaikwad>",
                 description:
                     "fixing the ugly titlebar for Notion Desktop app for Windows",
-                loadingGif: "",
-                iconUrl: "https://pasteboard.co/gNbFBLk0oekH.x-icon",
+                loadingGif:
+                    "https://raw.githubusercontent.com/totallynotadi/anotion/main/assets/notion.ico",
+                iconUrl:
+                    "https://raw.githubusercontent.com/totallynotadi/anotion/main/assets/notion.ico",
                 icon: "./assets/notion.ico",
                 setupIcon: "./assets/notion.ico",
             },
