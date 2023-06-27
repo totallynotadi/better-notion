@@ -11,6 +11,7 @@ module.exports = {
                 repository: {
                     owner: "totallynotadi",
                     name: "anotion",
+                    draft: true,
                 },
             },
         },
