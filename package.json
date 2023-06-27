@@ -1,11 +1,13 @@
 {
   "name": "notion",
   "version": "1.0.0",
-  "description": "notion titlebar fix",
+  "description": "fixing the ugly titlebar for Notion Desktop app for Windows",
   "main": "main.js",
   "scripts": {
-    "start": "set NODE_ENV=development && electron .",
-    "test": "electron ."
+    "start": "electron-forge start",
+    "test": "electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [
     "electron",
@@ -14,11 +16,17 @@
   "author": "totallynotadi <g.aditya2048@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^25.2.0",
-    "electron-reload": "^2.0.0-alpha.1",
-    "electron-reloader": "^1.2.3"
+    "@electron-forge/cli": "^6.2.1",
+    "@electron-forge/maker-deb": "^6.2.1",
+    "@electron-forge/maker-rpm": "^6.2.1",
+    "@electron-forge/maker-squirrel": "^6.2.1",
+    "@electron-forge/maker-zip": "^6.2.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
+    "@electron-forge/publisher-github": "^6.2.1",
+    "@rabbitholesyndrome/electron-forge-maker-portable": "^0.1.1",
+    "electron": "^25.2.0"
   },
   "dependencies": {
-    "custom-electron-titlebar": "^4.2.3"
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

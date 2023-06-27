@@ -258,4 +258,6 @@ samples/*/temp/*
 sample/app/bundle\.js*
 
 sample/out/
+out/
 release/
+.prettierrc
