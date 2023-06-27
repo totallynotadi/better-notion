@@ -14,10 +14,10 @@ const createWindow = () => {
         height: 800,
         title: "Notion",
         titleBarOverlay: {
-            color: "#191919",
+            color: "#19191900",
             // color: "ffffff",
             symbolColor: "#ffffff",
-            height: 46,
+            height: 44,
         },
         titleBarStyle: "hidden",
         backgroundColor: "#191919",
@@ -49,13 +49,13 @@ app.whenReady().then(() => {
         .notion-sidebar-container {
             padding-top: 2rem !important;
         }
+        .notion-topbar > div > div:nth-child(2) {
+            height: 100%;
+            -webkit-app-region: drag;
+        }
         .notion-topbar-action-buttons {
             margin-right: 9rem;
         }
         `
     );
 });
-
-// .notion-topbar {
-//     margin-top: 2rem !important;
-// }
