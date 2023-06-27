@@ -38,18 +38,19 @@ app.whenReady().then(() => {
 
     let contents = mainWindow.webContents;
 
+    // see https://stackoverflow.com/questions/34303423/is-it-possible-to-have-a-css-selector-based-on-a-css-property-and-its-value
     contents.insertCSS(
         `
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-        .notion-app {
-            font-family: 'Inter', Helvetica, apple-system, sans-serif;
+        div[style~="ui-sans-serif,"] {
+            font-family: 'Inter', apple-system, Helvetica, Arial, sans-serif !important;
         }
 
         .notion-sidebar-container {
             padding-top: 2rem !important;
         }
-        .notion-topbar > div > div:nth-child(2) {
+        .notion-topbar > div > div[style="flex-grow: 1; flex-shrink: 1;"] {
             height: 100%;
             -webkit-app-region: drag;
         }
@@ -59,3 +60,9 @@ app.whenReady().then(() => {
         `
     );
 });
+
+// .notion-topbar {
+//     margin-top: 2rem !important;
+//     background-color: red;
+//     height: 100%;
+// }
