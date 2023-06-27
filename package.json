@@ -1,5 +1,5 @@
 {
-  "name": "notion",
+  "name": "BetterNotion",
   "version": "1.0.0",
   "description": "fixing the ugly titlebar for Notion Desktop app for Windows",
   "main": "main.js",
@@ -13,7 +13,7 @@
     "electron",
     "notion"
   ],
-  "author": "totallynotadi <g.aditya2048@gmail.com>",
+  "author": "Aditya Gaikwad <g.aditya2048@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.2.1",

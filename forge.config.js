@@ -1,6 +1,7 @@
 module.exports = {
     packagerConfig: {
         asar: true,
+        appanme: "BetterNotion",
     },
     rebuildConfig: {},
     publishers: [
@@ -16,11 +17,18 @@ module.exports = {
     ],
     makers: [
         {
-            name: "@rabbitholesyndrome/electron-forge-maker-portable",
-        },
-        {
-            name: "@electron-forge/maker-zip",
-            platforms: ["darwin"],
+            name: "@electron-forge/maker-squirrel",
+            config: {
+                title: "BetterNotion",
+                name: "BetterNotion",
+                authors: "Aditya Gaikwad>",
+                description:
+                    "fixing the ugly titlebar for Notion Desktop app for Windows",
+                loadingGif: "",
+                iconUrl: "https://pasteboard.co/gNbFBLk0oekH.x-icon",
+                icon: "./assets/notion.ico",
+                setupIcon: "./assets/notion.ico",
+            },
         },
         {
             name: "@electron-forge/maker-deb",
