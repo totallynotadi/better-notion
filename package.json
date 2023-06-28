@@ -1,6 +1,6 @@
 {
   "name": "BetterNotion",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "fixing the ugly titlebar for Notion Desktop app for Windows",
   "main": "main.js",
   "scripts": {
