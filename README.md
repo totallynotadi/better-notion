@@ -10,10 +10,9 @@ The motive behind creating this was to simply have a better looking desktop app 
 | --------------------------------------------------------------------- | ---------------------------------------------------- |
 | ![Official Notion Desktop App screenshot](assets/notion-official.png) | ![BetterNotion screenshot](assets/better-notion.png) |
 
-BetterNotion is simply an desktop app which simple renders the notion website inside a webview, built with electron. The UI changes are done by injecting custom CSS.
+BetterNotion is simply an desktop app which simply renders the notion website inside a webview, built with electron. The UI changes are done by injecting custom CSS.
 
-BetterNotion makes the following UI changes:
-    
-    - remove default window titlebar.
-    - change font to Inter.
-    - make UI adjustments to fix side effects caused from removing the titlebar.
+BetterNotion makes the following UI changes:    
+- remove default window titlebar.
+- change font to Inter.
+- make UI adjustments to fix side effects caused from removing the titlebar.
