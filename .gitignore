@@ -261,3 +261,4 @@ sample/out/
 out/
 release/
 .prettierrc
+dist/
