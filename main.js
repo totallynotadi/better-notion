@@ -26,7 +26,7 @@ function handleSquirrelEvent() {
             spawnedProcess = ChildProcess.spawn(command, args, {
                 detached: true,
             });
-        } catch (error) {}
+        } catch (error) { }
 
         return spawnedProcess;
     };
@@ -77,7 +77,7 @@ const createWindow = () => {
         width: 1400,
         height: 800,
         title: "BetterNotion",
-        icon: "./assets/notion.ico",
+        icon: path.join(__dirname, "assets", "notion.png"),
         titleBarOverlay: {
             color: "#19191900",
             symbolColor: "#cfcfcf",
@@ -156,6 +156,9 @@ app.whenReady().then(() => {
         .shadow-cursor-breadcrumb img {
             margin-left: -4px !important;
             margin-right: -4px !important;
+        }
+        #notion-app > div > div:nth-child(1) > div > div:nth-child(4) {
+            display: none !important;
         }
         `
     );

@@ -1,21 +1,44 @@
 {
   "name": "BetterNotion",
-  "version": "1.0.3",
   "description": "fixing the ugly titlebar for Notion Desktop app for Windows",
   "main": "main.js",
+  "author": "Aditya Gaikwad <g.aditya2048@gmail.com>",
+  "license": "ISC",
+  "version": "1.0.4",
   "scripts": {
     "start": "electron-forge start",
     "test": "electron .",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder --windows --linux",
+    "release": "electron-builder --windows --linux --publish always"
+  },
+  "build": {
+    "appId": "com.totallynotadi.BetterNotion",
+    "productName": "BetterNotion",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "build/notion.ico"
+    },
+    "directories": {
+      "buildResources": ".",
+      "output": "dist"
+    }
   },
   "keywords": [
     "electron",
     "notion"
   ],
-  "author": "Aditya Gaikwad <g.aditya2048@gmail.com>",
-  "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.2.1",
     "@electron-forge/maker-deb": "^6.2.1",
@@ -25,7 +48,8 @@
     "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
     "@electron-forge/publisher-github": "^6.2.1",
     "@rabbitholesyndrome/electron-forge-maker-portable": "^0.1.1",
-    "electron": "^25.2.0"
+    "electron": "^25.2.0",
+    "electron-builder": "^24.9.1"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"

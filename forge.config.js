@@ -2,6 +2,7 @@ module.exports = {
     packagerConfig: {
         asar: true,
         appanme: "BetterNotion",
+        icon: "./assets/notion.ico",
     },
     rebuildConfig: {},
     publishers: [
@@ -31,10 +32,6 @@ module.exports = {
                 icon: "./assets/notion.ico",
                 setupIcon: "./assets/notion.ico",
             },
-        },
-        {
-            name: "@electron-forge/maker-deb",
-            config: {},
         },
     ],
     plugins: [
