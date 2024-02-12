@@ -10,11 +10,12 @@
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --windows",
-    "release": "electron-builder --windows --publish onTagOrDraft"
+    "release": "electron-builder --windows --publish always"
   },
   "build": {
     "appId": "com.totallynotadi.BetterNotion",
     "productName": "BetterNotion",
+    "artifactName": "${productName}.${ext}",
     "win": {
       "target": [
         {
