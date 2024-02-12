@@ -4,26 +4,17 @@
   "main": "src/main.js",
   "author": "Aditya Gaikwad <g.aditya2048@gmail.com>",
   "license": "ISC",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --windows --linux",
-    "release": "electron-builder --windows --linux --publish always"
+    "build": "electron-builder --windows",
+    "release": "electron-builder --windows --publish onTagOrDraft"
   },
   "build": {
     "appId": "com.totallynotadi.BetterNotion",
     "productName": "BetterNotion",
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb",
-        "pacman"
-      ],
-      "icon": "assets/notion.png",
-      "category": "Office"
-    },
     "win": {
       "target": [
         {
@@ -32,6 +23,9 @@
             "x64"
           ]
         }
+      ],
+      "publish": [
+        "github"
       ],
       "icon": "assets/notion.ico"
     },
