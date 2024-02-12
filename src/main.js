@@ -31,7 +31,13 @@ app.whenReady().then(() => {
 
     fs.readFile('./assets/styles.css', 'utf8', (err, data) => {
         if (err) {
-            console.error(err);
+            fs.readFile('../assets/styles.css', 'utf8', (err, data) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                contents.insertCSS(data);
+            });
             return;
         }
         contents.insertCSS(data);
