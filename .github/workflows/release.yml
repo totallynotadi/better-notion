@@ -1,8 +1,6 @@
 name: BetterNotionRelease
 
-on:
-    release:
-        types: [published]
+on: push
 
 jobs:
     Release:
@@ -27,10 +25,17 @@ jobs:
             - name: Upload build outputs to release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  run: ls && dir && echo info dumped successfully
               uses: actions/upload-artifact@v2
               with:
                   name: windows-package
                   path: |
+                      dist/*.zip
+                      dist/*.exe
+            - name: test action-gh-release
+              uses: softprops/action-gh-release@v1
+              with:
+                  body_path: CHANGELOG.txt
+                  draft: true
+                  files: |
                       dist/*.zip
                       dist/*.exe
