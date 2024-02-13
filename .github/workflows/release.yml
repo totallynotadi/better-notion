@@ -1,0 +1,36 @@
+name: BetterNotionRelease
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    Release:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [windows-latest]
+
+        steps:
+            - name: Check out Git repository
+              uses: actions/checkout@v2
+            - name: Install Node.js, NPM and Yarn
+              uses: actions/setup-node@master
+              with:
+                  node-version: 14
+            - name: Install dependencies
+              run: npm install
+            - name: Build Electron app
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: npm run build
+            - name: Upload build outputs to release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  run: ls && dir && echo info dumped successfully
+              uses: actions/upload-artifact@v2
+              with:
+                  name: windows-package
+                  path: |
+                      dist/*.zip
+                      dist/*.exe

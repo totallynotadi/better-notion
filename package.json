@@ -15,15 +15,31 @@
   "build": {
     "appId": "com.totallynotadi.BetterNotion",
     "productName": "BetterNotion",
-    "artifactName": "${productName}.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "totallynotadi",
+        "repo": "anotion"
+      }
+    ],
     "win": {
       "target": [
         {
           "target": "nsis",
           "arch": [
-            "x64"
+            "x64",
+            "ia32"
           ]
+        },
+        {
+          "target": "zip"
+        },
+        {
+          "target": "portable"
         }
+      ],
+      "publish": [
+        "github"
       ],
       "icon": "assets/notion.ico"
     },
@@ -31,9 +47,6 @@
       "buildResources": "./assets",
       "output": "dist"
     }
-  },
-  "publish": {
-    "provide": "github"
   },
   "keywords": [
     "electron",
