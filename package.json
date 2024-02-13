@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --windows",
-    "release": "electron-builder --windows --publish always"
+    "release": "electron-builder --publish always"
   },
   "build": {
     "appId": "com.totallynotadi.BetterNotion",
@@ -25,15 +25,15 @@
           ]
         }
       ],
-      "publish": [
-        "github"
-      ],
       "icon": "assets/notion.ico"
     },
     "directories": {
       "buildResources": "./assets",
       "output": "dist"
     }
+  },
+  "publish": {
+    "provide": "github"
   },
   "keywords": [
     "electron",

@@ -19,15 +19,18 @@ const createWindow = () => {
         backgroundColor: "#191919",
     });
 
-    mainWindow.loadURL("https://notion.so");
-
-    return mainWindow;
+    mainWindow.loadURL("https://notion.so").then((mainWindow) => {
+        return mainWindow;
+    }, (err) => {
+        console.log("loadURL failed", err);
+    });
 };
 
 app.whenReady().then(() => {
     let mainWindow = createWindow();
 
     let contents = mainWindow.webContents;
+    console.log(contents.isLoading);
 
     contents.insertCSS(`
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
