@@ -1,1 +1,1 @@
-test release
+first release with CI

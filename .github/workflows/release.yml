@@ -45,7 +45,7 @@ jobs:
                   path: |
                       dist/*.zip
                       dist/*.exe
-            - name: Create release and upload build assets to release
+            - name: Create release and upload build assets
               uses: softprops/action-gh-release@v1
               with:
                   name: ${{needs.variables.outputs.tag_name}}
