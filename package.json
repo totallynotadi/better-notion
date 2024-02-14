@@ -15,13 +15,6 @@
   "build": {
     "appId": "com.totallynotadi.BetterNotion",
     "productName": "BetterNotion",
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "totallynotadi",
-        "repo": "anotion"
-      }
-    ],
     "win": {
       "target": [
         {
@@ -37,9 +30,6 @@
         {
           "target": "portable"
         }
-      ],
-      "publish": [
-        "github"
       ],
       "icon": "assets/notion.ico"
     },
