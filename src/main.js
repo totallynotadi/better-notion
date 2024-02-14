@@ -2,9 +2,8 @@
 const { app, BrowserWindow } = require("electron");
 
 const path = require("path");
-const fs = require("node:fs");
 
-const createWindow = () => {
+const createWindow = async () => {
     const mainWindow = new BrowserWindow({
         width: 1400,
         height: 800,
@@ -19,18 +18,26 @@ const createWindow = () => {
         backgroundColor: "#191919",
     });
 
-    mainWindow.loadURL("https://notion.so").then((mainWindow) => {
-        return mainWindow;
-    }, (err) => {
-        console.log("loadURL failed", err);
-    });
+    const URL = "https://notion.so";
+
+    app.on('login', async (event, webContents, authRespDetails, authInfo, callback) => {
+        event.preventDefault();
+        callback('23511287', 'abcd')
+    })
+
+    console.log('begin loading URL')
+    await mainWindow.loadURL(URL)
+    console.log('finished loading URL')
+
+    return mainWindow;
+
 };
 
-app.whenReady().then(() => {
-    let mainWindow = createWindow();
+app.whenReady().then(async () => {
+    let mainWindow = await createWindow()
 
     let contents = mainWindow.webContents;
-    console.log(contents.isLoading);
+    console.log(contents.isLoading());
 
     contents.insertCSS(`
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
