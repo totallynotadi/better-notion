@@ -1,9 +1,7 @@
 name: BetterNotionRelease
 
 on:
-    push:
-        tags:
-            - "*"
+  push
 
 jobs:
     variables:
