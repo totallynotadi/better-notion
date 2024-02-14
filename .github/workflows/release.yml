@@ -1,6 +1,9 @@
 name: BetterNotionRelease
 
-on: push
+on:
+    push:
+        tags:
+            - "v*"
 
 jobs:
     variables:
@@ -48,7 +51,7 @@ jobs:
             - name: Create release and upload build assets
               uses: softprops/action-gh-release@v1
               with:
-                  name: ${{needs.variables.outputs.tag_name}}
+                  # name: ${{needs.variables.outputs.tag_name}}
                   body_path: RELEASE.md
                   draft: true
                   files: |

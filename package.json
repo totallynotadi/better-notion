@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder --windows",
-    "release": "electron-builder --publish always"
+    "release": "electron-builder --publish never"
   },
   "build": {
     "appId": "com.totallynotadi.BetterNotion",
