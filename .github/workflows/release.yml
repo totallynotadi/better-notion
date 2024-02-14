@@ -3,7 +3,7 @@ name: BetterNotionRelease
 on:
     push:
         tags:
-            - "v*"
+            - "*"
 
 jobs:
     variables:
