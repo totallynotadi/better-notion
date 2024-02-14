@@ -1,1 +1,1 @@
-setup CI
+setup github actions CI

@@ -1,14 +1,31 @@
 name: BetterNotionRelease
 
-on: push
+on:
+    push:
+        tags:
+            - "v*"
 
 jobs:
-    Release:
+    variables:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
                 os: [windows-latest]
-
+        outputs:
+            tag_name: ${{steps.vars.outputs.tag_name}}
+        steps:
+            - name: Setting global variables
+              uses: actions/github-script@v6
+              id: vars
+              with:
+                  script: |
+                      core.setOutput('tag_name', '${{ github.ref }}'.split("/").at(-1);
+    Release:
+        needs: variables
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [windows-latest]
         steps:
             - name: Check out Git repository
               uses: actions/checkout@v2
@@ -34,7 +51,8 @@ jobs:
             - name: test action-gh-release
               uses: softprops/action-gh-release@v1
               with:
-                  body_path: CHANGELOG.md
+                  name: ${{needs.variables.outputs.tag_name}}
+                  body_path: RELEASE.md
                   draft: true
                   files: |
                       dist/*.zip
