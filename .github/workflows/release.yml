@@ -3,22 +3,22 @@ name: BetterNotionRelease
 on: push
 
 jobs:
-    variables:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                os: [windows-latest]
-        outputs:
-            tag_name: ${{steps.vars.outputs.tag_name}}
-        steps:
-            - name: Setting global variables
-              uses: actions/github-script@v6
-              id: vars
-              with:
-                  script: |
-                      core.setOutput('tag_name', '${{ github.ref }}'.split("/").at(-1));
+    # variables:
+    #     runs-on: ${{ matrix.os }}
+    #     strategy:
+    #         matrix:
+    #             os: [windows-latest]
+    #     outputs:
+    #         tag_name: ${{steps.vars.outputs.tag_name}}
+    #     steps:
+    #         - name: Setting global variables
+    #           uses: actions/github-script@v6
+    #           id: vars
+    #           with:
+    #               script: |
+    #                   core.setOutput('tag_name', '${{ github.ref }}'.split("/").at(-1));
     Release:
-        needs: variables
+        # needs: variables
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
@@ -35,7 +35,7 @@ jobs:
             - name: Build Electron app
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: npm run build && ls && pwd && echo env info dumped successfully
+              run: npm run build && ls && pwd && echo "env info dumped successfully"
             - name: Upload build artifacts
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -48,7 +48,7 @@ jobs:
             - name: Create release and upload build assets to release
               uses: softprops/action-gh-release@v1
               with:
-                  name: ${{needs.variables.outputs.tag_name}}
+                  # name: ${{needs.variables.outputs.tag_name}}
                   body_path: RELEASE.md
                   draft: true
                   files: |
