@@ -38,7 +38,7 @@ jobs:
             - name: Build Electron app
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: npm run build && ls && pwd && echo info has been dumped successfully
+              run: npm run build && ls && pwd && echo env info dumped successfully
             - name: Upload build outputs to release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
