@@ -48,7 +48,7 @@ jobs:
                   path: |
                       dist/*.zip
                       dist/*.exe
-            - name: test action-gh-release
+            - name: Upload build assets to release
               uses: softprops/action-gh-release@v1
               with:
                   name: ${{needs.variables.outputs.tag_name}}
