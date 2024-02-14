@@ -19,7 +19,7 @@ jobs:
               id: vars
               with:
                   script: |
-                      core.setOutput('tag_name', '${{ github.ref }}'.split("/").at(-1);
+                      core.setOutput('tag_name', '${{ github.ref }}'.split("/").at(-1))git ;
     Release:
         needs: variables
         runs-on: ${{ matrix.os }}
