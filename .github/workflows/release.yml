@@ -1,7 +1,6 @@
 name: BetterNotionRelease
 
-on:
-  push
+on: push
 
 jobs:
     variables:
@@ -37,7 +36,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npm run build && ls && pwd && echo env info dumped successfully
-            - name: Upload build outputs to release
+            - name: Upload build artifacts
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               uses: actions/upload-artifact@v2
@@ -46,7 +45,7 @@ jobs:
                   path: |
                       dist/*.zip
                       dist/*.exe
-            - name: Upload build assets to release
+            - name: Create release and upload build assets to release
               uses: softprops/action-gh-release@v1
               with:
                   name: ${{needs.variables.outputs.tag_name}}
