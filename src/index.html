@@ -7,21 +7,91 @@
     <title>Proxy Sign-in</title>
     <style>
         :root {
-            font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, system-ui, sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif, sans-serif;
             color: white;
+        }
+
+        html {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100%;
+        }
+
+        body h2 {
+            font-size: 1.2rem;
+            letter-spacing: 0.2px;
+            font-weight: normal;
+            color: #bbbbbb;
+        }
+
+        div p {
+            font-size: 1rem;
+            letter-spacing: 0.2px;
+            color: #b1b1b1;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input {
+            all: unset;
+            border-radius: 0.7rem;
+            border: 0.5px solid #252525;
+            background-color: rgba(255, 255, 255, 0.055);
+            padding: 0.7rem 1.2rem;
+            font-size: 14px;
+            color: rgb(200, 200, 200);
+        }
+
+        input::placeholder {
+            font-size: 14px;
+        }
+
+        button[type="submit"] {
+            width: min-content;
+            padding: 0.7rem 1.4rem;
+            border-radius: 0.8rem;
+            border: 0.5px solid #252525;
+            background-color: rgba(255, 255, 255, 0.055);
+            color: rgb(163, 163, 163);
+            font-size: 14px;
+        }
+
+        div {
+            margin: 0 auto auto auto;
         }
     </style>
     <script src="./renderer.js"></script>
 </head>
 
 <body>
-    <form onsubmit="handOnSubmit()">
-        <label for="username"> Username</label>
-        <input id="username" type="text" name="username">
-        <label for="password"> Password</label>
-        <input id="password" type="password" name="password">
-        <button type="submit">Submit</button>
-    </form>
+    <h2>Proxy Authentication Required</h2>
+    <div>
+        <p>
+            The proxy
+            <code id="proxyaddr"></code>
+            requires username and password
+        </p>
+        <form onsubmit="handOnSubmit()">
+            <input id="username" type="text" placeholder="Username" name="username">
+            <input id="password" type="password" placeholder="Password" name="password">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 
 </html>

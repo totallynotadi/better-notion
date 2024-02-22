@@ -39,19 +39,10 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npm run release && ls && pwd && echo "env info dumped successfully" && echo ${{needs.variables.outputs.tag_name}}
-            - name: Upload build artifacts
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              uses: actions/upload-artifact@v2
-              with:
-                  name: windows-package
-                  path: |
-                      dist/*.zip
-                      dist/*.exe
             - name: Create release and upload build assets
               uses: softprops/action-gh-release@v1
               with:
-                  # name: ${{needs.variables.outputs.tag_name}}
+                  name: ${{needs.variables.outputs.tag_name}}
                   body_path: RELEASE.md
                   draft: true
                   files: |

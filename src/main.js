@@ -19,13 +19,16 @@ app.on('login', async (event, webContents, authRespDetails, authInfo, callback) 
         console.log('incorrect credentials')
     }
 
-    console.log('auth callback info: ', authInfo);
+    console.log('auth callback info:', authInfo);
 
     const proxyCredsWindow = new BrowserWindow({
-        width: 800,
-        height: 400,
+        width: 650,
+        height: 300,
         title: "Proxy Authentication",
         webPreferences: { preload: path.join(__dirname, 'preload.js') },
+        resizable: false,
+        minimizable: false,
+        fullscreenable: false,
         titleBarOverlay: {
             color: "#19191900",
             symbolColor: "#cfcfcf",
@@ -35,7 +38,8 @@ app.on('login', async (event, webContents, authRespDetails, authInfo, callback) 
         titleBarStyle: "hidden",
         backgroundColor: "#191919",
     })
-    proxyCredsWindow.loadFile(path.join(__dirname, 'index.html'))
+    await proxyCredsWindow.loadFile(path.join(__dirname, 'index.html'));
+    proxyCredsWindow.webContents.send("send-proxy-addr", authInfo.host, authInfo.port);
     global.proxyCredsWindow = proxyCredsWindow;
     global.authCallback = callback;
 })
