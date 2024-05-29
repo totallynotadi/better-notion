@@ -1,5 +1,8 @@
-### v1.1.3
+### v1.1.4
+- Add code signing with self signed certificate
+  - Not signing builds triggers windows defender which causes app startup to take >10 seconds.
 
+### v1.1.3
 - first release with setting up Github Actions
 - Implement Basic Proxy Authentication.
    - proxy auth is required for institutional networks and apps wont work without explicitly providing credentials.
