@@ -22,7 +22,7 @@ app.on('login', async (event, webContents, authRespDetails, authInfo, callback) 
     console.log('auth callback info:', authInfo);
 
     const proxyCredsWindow = new BrowserWindow({
-        width: 650,
+        width: 600,
         height: 300,
         title: "Proxy Authentication",
         webPreferences: { preload: path.join(__dirname, 'preload.js') },
@@ -39,7 +39,9 @@ app.on('login', async (event, webContents, authRespDetails, authInfo, callback) 
         backgroundColor: "#191919",
     })
     await proxyCredsWindow.loadFile(path.join(__dirname, 'index.html'));
+
     proxyCredsWindow.webContents.send("send-proxy-addr", authInfo.host, authInfo.port);
+
     global.proxyCredsWindow = proxyCredsWindow;
     global.authCallback = callback;
 })
@@ -49,11 +51,17 @@ const createWindow = async () => {
         width: 1400,
         height: 800,
         title: "BetterNotion",
-        icon: path.join(__dirname, "assets", "notion.png"),
+        icon: path.join(__dirname, "assets", "notion.ico"),
+        backgroundMaterial: "acrylic",
         titleBarOverlay: {
             color: "#19191900",
             symbolColor: "#cfcfcf",
             height: 45,
+        },
+        webPreferences: {
+            nodeIntegration: true,
+            experimentalFeatures: true,
+            webviewTag: true,
         },
         titleBarStyle: "hidden",
         backgroundColor: "#191919",
@@ -81,7 +89,7 @@ const decorateWebContents = (window) => {
     contents.insertCSS(`
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-    div[style~="ui-sans-serif,"] {
+    :root, *, div[style~="ui-sans-serif,"] {
         font-family: "Inter", apple-system, Helvetica, Arial, sans-serif !important;
     }
 
@@ -135,7 +143,7 @@ const decorateWebContents = (window) => {
         margin-left: -4px !important;
         margin-right: -4px !important;
     }
-    #notion-app > div > div:nth-child(1) > div > div:nth-child(4) {
+    .notion-ai-button {
         display: none !important;
     }
 `);

@@ -263,3 +263,4 @@ release/
 .prettierrc
 dist/
 publish.*
+encoded.txt

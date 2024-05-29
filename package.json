@@ -7,9 +7,7 @@
   "version": "1.1.3",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --windows",
+    "build": "electron-builder",
     "release": "electron-builder --publish never"
   },
   "build": {
@@ -29,8 +27,7 @@
         {
           "target": "portable"
         }
-      ],
-      "icon": "assets/notion.ico"
+      ]
     },
     "directories": {
       "buildResources": "./assets",

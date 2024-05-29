@@ -7,6 +7,7 @@ on:
 
 jobs:
     variables:
+        environment: release_envi
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
@@ -21,6 +22,8 @@ jobs:
                   script: |
                       core.setOutput('tag_name', '${{ github.ref }}'.split("/").at(-1));
     Release:
+        environment: release_envi
+
         needs: variables
         runs-on: ${{ matrix.os }}
         strategy:
@@ -36,9 +39,15 @@ jobs:
             - name: Install dependencies
               run: npm install
             - name: Build Electron app
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npm run release && ls && pwd && echo "env info dumped successfully" && echo ${{needs.variables.outputs.tag_name}}
+              #   uses: samuelmeuli/action-electron-builder@v1
+              #   with:
+              #       github_token: ${{ secrets.github_token }}
+              #       release: false
+              #       skip_build: true
+              #       args: "--publish never"
+              #       windows_certs: ${{ secrets.windows_certs }}
+              #       windows_certs_password: ${{ secrets.windows_certs_password }}
             - name: Create release and upload build assets
               uses: softprops/action-gh-release@v1
               with:
