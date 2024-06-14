@@ -13,4 +13,8 @@ BetterNotion is simply an desktop app which simply renders the notion website in
 BetterNotion makes the following UI changes:    
 - remove default window titlebar.
 - change font to Inter.
+- get rid of the "Use Notion AI" prompts in the UI.
 - make UI adjustments to fix side effects caused from removing the titlebar.
+
+Some more miscellaneous changes/enhancements by BetterNotion
+- add proxy authentication for use in institutional networks.

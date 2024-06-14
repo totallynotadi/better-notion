@@ -4,7 +4,7 @@
   "main": "src/main.js",
   "author": "Aditya Gaikwad <g.aditya2048@gmail.com>",
   "license": "ISC",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
