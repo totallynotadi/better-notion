@@ -72,23 +72,21 @@ const createWindow = async () => {
         decorateWebContents(browserWindow);
     })
     browserWindow.webContents.on('dom-ready', (e) => {
-        // browserWindow.hide()
         browserWindow.webContents.executeJavaScript(`
             setTimeout(() => {
                 const bottomOptions = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div:nth-child(2)');
                 const bottomOptionsContainer = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5)');
                 const upgradeButton = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(2)");
-    
+
                 upgradeButton.parentNode.removeChild(upgradeButton);
                 bottomOptions.parentNode.removeChild(bottomOptions);
+                bottomOptions.removeChild(bottomOptions.childNodes[0]);
                 bottomOptionsContainer.appendChild(bottomOptions);
                 bottomOptionsContainer.style.padding = "8px !important;";
-            }, 3500);
+            }, 5000);
         `).then((res) => {
-            // browserWindow.show();
         }, (err) => {
             console.error(`error on dom access: ${err}`);
-            // browserWindow.show();
         });
     });
 
