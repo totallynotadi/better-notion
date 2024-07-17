@@ -78,12 +78,30 @@ const createWindow = async () => {
                 const bottomOptionsContainer = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5)');
                 const upgradeButton = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(2)");
 
-                upgradeButton.parentNode.removeChild(upgradeButton);
                 bottomOptions.parentNode.removeChild(bottomOptions);
                 bottomOptions.removeChild(bottomOptions.childNodes[0]);
                 bottomOptionsContainer.appendChild(bottomOptions);
-                bottomOptionsContainer.style.padding = "8px !important;";
-            }, 5000);
+                bottomOptionsContainer.style.padding = "8px 6px !important;";
+
+                bottomOptions.style.visibility = "visible !important;";
+
+                // fix layout shift in peek view over on-click events
+                window.onmousedown = () => {
+                    console.log('window mousedown');
+                    setTimeout(() => {
+                        var peekContainer = document.querySelector("#notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div");
+                        if (peekContainer !== null) {
+                            peekContainer.insertAdjacentHTML('afterbegin', '<div style="position: absolute; left: 0px; width: 0px; flex-grow: 0; z-index: 109; top: -1px; bottom: -1px; pointer-events: auto;"><div style="cursor: col-resize; height: 100%; width: 12px; margin-left: -6px;"></div></div>');
+                        }
+                    }, 0);
+                }
+                window.onmouseup = () => {
+                    var peekContainer = document.querySelector("#notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div");
+                    if (peekContainer !== null) {
+                        peekContainer.removeChild(peekContainer.children[0])
+                    }
+                }
+            }, 6000);
         `).then((res) => {
         }, (err) => {
             console.error(`error on dom access: ${err}`);
@@ -182,12 +200,19 @@ const decorateWebContents = (window) => {
         }
         #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(2) {
             padding: 6px 4px !important;
+            display: none !important
         }
         #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div {
             gap: 0px !important;
         }
         #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div {
             padding: 0px 8px 20px !important;
+        }
+        #notion-app > div > div:nth-child(1) > div > div:nth-child(2) > main > div > div > div.whenContentEditable > div > div:nth-child(4) > div:nth-child(2) {
+            display: none !important;
+        }
+        #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div:nth-child(2) {
+            visibility: hidden !important;
         }
     `);
 }

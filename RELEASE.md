@@ -1,6 +1,4 @@
-### v1.1.5
-- Fix UI issues from new updates to Notion website.
-  - revised sidebar looked ugly.
-  - removed unnecessary 'Upgrade Notion' subscription call to action button.
-  - fixed draggle region breadking due to new UI.
-  - misc UI changes
+### v1.1.7
+- Increase JS execution timeout.
+- Hide notion options until loaded.
+- Fix layout shift in side peek-renderer over on-click events.
