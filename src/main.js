@@ -77,7 +77,9 @@ const createWindow = async () => {
                 const bottomOptions = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div:nth-child(2)');
                 const bottomOptionsContainer = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5)');
                 const upgradeButton = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(2)");
+                const notionAIButton = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(2) > a:nth-child(2)");
 
+                notionAIButton.parentNode.removeChild(notionAIButton);
                 bottomOptions.parentNode.removeChild(bottomOptions);
                 bottomOptions.removeChild(bottomOptions.childNodes[0]);
                 bottomOptionsContainer.appendChild(bottomOptions);
@@ -87,7 +89,6 @@ const createWindow = async () => {
 
                 // fix layout shift in peek view over on-click events
                 window.onmousedown = () => {
-                    console.log('window mousedown');
                     setTimeout(() => {
                         var peekContainer = document.querySelector("#notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div");
                         if (peekContainer !== null) {
@@ -213,6 +214,9 @@ const decorateWebContents = (window) => {
         }
         #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div:nth-child(2) {
             visibility: hidden !important;
+        }
+        #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(3) {
+            margin: 4px 0px !important;
         }
     `);
 }
