@@ -1,6 +1,14 @@
+### v1.1.8
+- remove "Notion AI" button
+- fix minor CSS
+
+### v1.1.7
+- Increase JS execution timeout.
+- Hide notion options until loaded.
+- Fix layout shift in side peek-renderer over on-click events.
+
 ### v1.1.6
 - Fix issues from last version (v1.1.5) over js execution timeout.
-
 
 ### v1.1.5
 - Fix UI issues from new updates to Notion website.

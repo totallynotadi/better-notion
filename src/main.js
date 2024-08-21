@@ -73,13 +73,15 @@ const createWindow = async () => {
     })
     browserWindow.webContents.on('dom-ready', (e) => {
         browserWindow.webContents.executeJavaScript(`
+            let peekFixed = false;
             setTimeout(() => {
-                const bottomOptions = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div:nth-child(2)');
-                const bottomOptionsContainer = document.querySelector('#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5)');
+                const bottomOptions = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div > div:nth-child(2)")
+                const bottomOptionsContainer = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5)");
                 const upgradeButton = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(2)");
                 const notionAIButton = document.querySelector("#notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(2) > a:nth-child(2)");
 
                 notionAIButton.parentNode.removeChild(notionAIButton);
+
                 bottomOptions.parentNode.removeChild(bottomOptions);
                 bottomOptions.removeChild(bottomOptions.childNodes[0]);
                 bottomOptionsContainer.appendChild(bottomOptions);
@@ -89,19 +91,15 @@ const createWindow = async () => {
 
                 // fix layout shift in peek view over on-click events
                 window.onmousedown = () => {
-                    setTimeout(() => {
-                        var peekContainer = document.querySelector("#notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div");
-                        if (peekContainer !== null) {
-                            peekContainer.insertAdjacentHTML('afterbegin', '<div style="position: absolute; left: 0px; width: 0px; flex-grow: 0; z-index: 109; top: -1px; bottom: -1px; pointer-events: auto;"><div style="cursor: col-resize; height: 100%; width: 12px; margin-left: -6px;"></div></div>');
-                        }
-                    }, 0);
-                }
-                window.onmouseup = () => {
                     var peekContainer = document.querySelector("#notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div");
                     if (peekContainer !== null) {
-                        peekContainer.removeChild(peekContainer.children[0])
+                        // peekContainer.insertAdjacentHTML('afterbegin', '<div style="position: absolute; left: 0px; width: 0px; flex-grow: 0; z-index: 109; top: 0px; bottom: 0px; pointer-events: auto;"><div style="cursor: col-resize; height: 100%; width: 12px; margin-left: -6px;"></div></div>');
+                        var peekHeaderSection = document.querySelector("#notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(3)");
+                        peekHeaderSection.style.paddingRight = "8rem";
                     }
                 }
+                // window.onmouseup = () => {
+                // }
             }, 6000);
         `).then((res) => {
         }, (err) => {
@@ -147,14 +145,12 @@ const decorateWebContents = (window) => {
             -webkit-user-select: none;
         }
 
-        .notion-peek-renderer
-            > div[style="flex-direction: column; position: absolute; display: flex; margin-left: auto; background: rgb(32, 32, 32); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px; top: 0px; right: 0px; width: 100%; height: 100%; border-radius: 0px;"] {
-            padding-top: 44px !important;
+        .notion-peek-renderer > div[style="flex-direction: column; position: absolute; display: flex; margin-left: auto; background: rgb(32, 32, 32); box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px; top: 0px; right: 0px; width: 100%; height: 100%; border-radius: 0px;"] {
+            padding-top: 2px !important;
         }
 
-        .notion-peek-renderer > div > div:nth-child(2) > div:nth-child(1) {
-            padding-left: 50px !important;
-            padding-right: 9px !important;
+        #notion-app > div > div:nth-child(1) > div > div.notion-peek-renderer > div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(3) {
+            padding-right: 8rem;
         }
 
         .notion-topbar {
@@ -201,7 +197,7 @@ const decorateWebContents = (window) => {
         }
         #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(5) > div:nth-child(2) {
             padding: 6px 4px !important;
-            display: none !important
+            display: none !important;
         }
         #notion-app > div > div:nth-child(1) > div > nav > div > div > div > div:nth-child(3) > div > div:nth-child(4) > div > div > div {
             gap: 0px !important;
